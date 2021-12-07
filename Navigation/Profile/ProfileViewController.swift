@@ -19,6 +19,12 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if DEBUG
+        tableView.backgroundColor = .green
+        #else
+        tableView.backgroundColor = .red
+        #endif
 
         setupView()
         setupConstraints()
@@ -33,7 +39,7 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "Photos")
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .systemGray5
+//        tableView.backgroundColor = .systemGray5
         
     }
     
