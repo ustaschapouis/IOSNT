@@ -8,6 +8,7 @@
 import UIKit
 
 
+
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var statusText = ""
