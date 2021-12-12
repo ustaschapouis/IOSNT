@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SnapKit
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
@@ -89,7 +89,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
     }
     
     func setupContent() {
@@ -100,35 +99,34 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         headerView.addSubview(statusField)
         headerView.addSubview(statusLabelField)
         contentView.backgroundColor = .systemGray5
-      
-        NSLayoutConstraint.activate([
-            
-            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            headerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            headerView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            headerView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            
-            avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            avatarImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            avatarImage.widthAnchor.constraint(equalToConstant: 100),
-            avatarImage.heightAnchor.constraint(equalToConstant: 100),
-            
-            buttonField.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16),
-            buttonField.heightAnchor.constraint(equalToConstant: 50),
-            buttonField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 142),
-            buttonField.rightAnchor.constraint(equalTo: headerView.leftAnchor, constant: 400),
-            
-            
-            nameTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 136),
-            nameTextField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            nameTextField.heightAnchor.constraint(equalToConstant: 50),
-            
-            statusField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 136),
-            statusField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 10),
-            
-            statusLabelField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 136),
-            statusLabelField.topAnchor.constraint(equalTo: statusField.bottomAnchor, constant: 16),
-        ])
+        
+        headerView.snp.makeConstraints { (make) in
+            make.edges.equalTo(contentView)
+        }
+        
+        avatarImage.snp.makeConstraints { (make) in
+            make.width.height.equalTo(100)
+            make.top.left.equalTo(headerView).inset(UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 0))
+        }
+        
+        buttonField.snp.makeConstraints { (make) in
+            make.left.equalTo(16)
+            make.size.equalTo(CGSize(width: 380, height: 50))
+            make.top.equalTo(contentView).offset(142)
+        }
+        
+        nameTextField.snp.makeConstraints { (make) in
+            make.left.top.equalTo(contentView).inset(UIEdgeInsets(top: 16, left: 136, bottom: 0, right: 0))
+            make.height.equalTo(50)
+        }
+        
+        statusField.snp.makeConstraints { (make) in
+            make.top.left.equalTo(nameTextField).inset(UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0))
+        }
+        
+        statusLabelField.snp.makeConstraints { (make) in
+            make.top.left.equalTo(statusField).inset(UIEdgeInsets(top: 35, left: 0, bottom: 0, right: 0))
+        }
     }
     
     @objc func tap() {
@@ -138,7 +136,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = statusField.text!
            }
-    
 }
        
   
