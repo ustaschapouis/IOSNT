@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosTableViewCell: UITableViewCell {
     
@@ -62,6 +63,7 @@ class PhotosTableViewCell: UITableViewCell {
         arrow.translatesAutoresizingMaskIntoConstraints = false
         return arrow
     }()
+    
     
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -120,14 +122,11 @@ class PhotosTableViewCell: UITableViewCell {
 
             arrowIcon.topAnchor.constraint(equalTo: photosView.topAnchor, constant: 12),
             arrowIcon.rightAnchor.constraint(equalTo: photosView.rightAnchor, constant: -12),
-//            arrowIcon.bottomAnchor.constraint(equalTo: feedPhoto4.topAnchor, constant: -12),
-//            arrowIcon.centerYAnchor.constraint(equalTo: feedTitle.centerYAnchor),
             arrowIcon.heightAnchor.constraint(equalToConstant: 36),
             arrowIcon.widthAnchor.constraint(equalToConstant: 36),
             
     ])
 
     }
-
 
 }
