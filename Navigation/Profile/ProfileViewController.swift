@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
     let cellID = "cellID"
@@ -14,9 +15,16 @@ class ProfileViewController: UIViewController {
     private var backgroundView:  UIView?
     private var crossButton: UIButton?
     let photos = Photos()
+    let posts = Posts()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if DEBUG
+        tableView.backgroundColor = .green
+        #else
+        tableView.backgroundColor = .red
+        #endif
 
         setupView()
         setupConstraints()
@@ -31,7 +39,7 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "Photos")
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .systemGray5
+//        tableView.backgroundColor = .systemGray5
         
     }
     
@@ -54,7 +62,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 1
         }
-        return Posts.content.count
+        return posts.content.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +77,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! PostTableViewCell
-            let postCell = Posts.content[indexPath.row]
+        let postCell = posts.content[indexPath.row]
         cell.authorLabel.text = postCell.author
         cell.postImage.image = UIImage(named: postCell.image)
         cell.descriptionLabel.text = postCell.description

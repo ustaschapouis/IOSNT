@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class PhotosViewController: UIViewController, UICollectionViewDelegate {
     
@@ -61,7 +62,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
         cell.feedPhoto.image = photos.images[indexPath.row]
-       
+//        cell.feedPhoto.image = photos.images[indexPath.row]
         
         return cell
     }
