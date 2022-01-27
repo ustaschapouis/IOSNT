@@ -7,6 +7,34 @@
 
 import UIKit
 
+class User {
+    
+    var userName = String()
+}
+
+protocol UserService {
+    
+    func getData(nameOfUser: String) -> User
+}
+
+class CurrentUserService: UserService {
+    
+    var randomUser: User
+    init(randomUser: User) {
+        self.randomUser = randomUser
+    }
+    
+    func getData(nameOfUser: String) -> User {
+        if nameOfUser == randomUser.userName {
+            return randomUser
+        }
+        return randomUser
+    }
+    
+
+}
+
+
 class LoginViewController: UIViewController {
     
     let logoImage: UIImageView = {
@@ -176,5 +204,9 @@ class LoginViewController: UIViewController {
 
     }
 
-    
 }
+
+
+
+
+
