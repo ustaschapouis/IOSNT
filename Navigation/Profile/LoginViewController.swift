@@ -6,36 +6,11 @@
 //
 
 import UIKit
-
-class User {
     
-    var userName = String()
-}
-
-protocol UserService {
-    
-    func getData(nameOfUser: String) -> User
-}
-
-class CurrentUserService: UserService {
-    
-    var randomUser: User
-    init(randomUser: User) {
-        self.randomUser = randomUser
-    }
-    
-    func getData(nameOfUser: String) -> User {
-        if nameOfUser == randomUser.userName {
-            return randomUser
-        }
-        return randomUser
-    }
-    
-
-}
-
 
 class LoginViewController: UIViewController {
+    
+    private let currentUser = CurrentUserService()
     
     let logoImage: UIImageView = {
         let logo = UIImageView()
@@ -156,8 +131,15 @@ class LoginViewController: UIViewController {
     }
     
     @objc func tap() {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        if let enterdName = userTextField.text, (currentUser.returnUser(userName: enterdName) != nil) {
+            let profileVC = ProfileViewController(userService: currentUser, enteredUserName: enterdName)
+            navigationController?.pushViewController(profileVC, animated: true)
+            print("Correct login")
+        } else {
+            print("WRONG LOGIN!!!")
+        }
+//        let profileVC = ProfileViewController()
+//        navigationController?.pushViewController(profileVC, animated: true)
     }
 
     func setUpConstraints() {
