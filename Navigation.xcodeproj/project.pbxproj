@@ -26,6 +26,7 @@
 		FA13A49E27D0F2230029D44F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A49B27D0F2220029D44F /* User.swift */; };
 		FA13A49F27D0F2230029D44F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A49C27D0F2230029D44F /* UserService.swift */; };
 		FA13A4A027D0F2230029D44F /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A49D27D0F2230029D44F /* CurrentUserService.swift */; };
+		FA13A4A227D0F7AC0029D44F /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A4A127D0F7AC0029D44F /* TestUserService.swift */; };
 		FA930B3E276CD32500D0C405 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = FA930B3D276CD32500D0C405 /* iOSIntPackage */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +54,7 @@
 		FA13A49B27D0F2220029D44F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../.Trash/User.swift; sourceTree = "<group>"; };
 		FA13A49C27D0F2230029D44F /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = ../../../.Trash/UserService.swift; sourceTree = "<group>"; };
 		FA13A49D27D0F2230029D44F /* CurrentUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUserService.swift; path = ../../../.Trash/CurrentUserService.swift; sourceTree = "<group>"; };
-		FAA2386E27D0F1CE008A3F96 /* IOSNT */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IOSNT; sourceTree = "<group>"; };
+		FA13A4A127D0F7AC0029D44F /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +73,6 @@
 		3C2FDE4826D8BEA0005D55A0 = {
 			isa = PBXGroup;
 			children = (
-				FAA2386E27D0F1CE008A3F96 /* IOSNT */,
 				3C2FDE5326D8BEA0005D55A0 /* Navigation */,
 				3C2FDE5226D8BEA0005D55A0 /* Products */,
 				906EFAC66A2C455453B50E72 /* Pods */,
@@ -142,6 +142,7 @@
 			children = (
 				FA13A49D27D0F2230029D44F /* CurrentUserService.swift */,
 				FA13A49B27D0F2220029D44F /* User.swift */,
+				FA13A4A127D0F7AC0029D44F /* TestUserService.swift */,
 				FA13A49C27D0F2230029D44F /* UserService.swift */,
 			);
 			name = User;
@@ -280,6 +281,7 @@
 				3C40D3DC26DE720F00005423 /* ProfileViewController.swift in Sources */,
 				3C2FDE6F26DA4E04005D55A0 /* InfoViewController.swift in Sources */,
 				FA13A49F27D0F2230029D44F /* UserService.swift in Sources */,
+				FA13A4A227D0F7AC0029D44F /* TestUserService.swift in Sources */,
 				3CC0ED2F26FDD94800ADB19C /* PhotosViewController.swift in Sources */,
 				3CC0ED2526F1DAC200ADB19C /* PostTableViewCell.swift in Sources */,
 				3C2FDE6D26D91083005D55A0 /* PostViewController.swift in Sources */,
