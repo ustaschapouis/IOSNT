@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
+    
+    var indexPath: IndexPath?
+    let imageProcessor = ImageProcessor()
 
     let postImage: UIImageView = {
         let image = UIImageView()
@@ -93,6 +97,26 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16)
         ])
+    }
+    
+    func configureCell(imageFilter: ColorFilter) {
+        setupImage(imageFilter: imageFilter)
+    }
+    
+    private func setupImage(imageFilter: ColorFilter) {
+        
+        guard let indexPath = indexPath else {
+                  return
+                  
+              }
+        let postCell = Posts.content[indexPath.row]
+        guard let image = UIImage(named: postCell.image) else { return }
+        imageProcessor.processImage(
+            sourceImage: image,
+            filter: imageFilter
+        ) { [weak self] image in
+            self?.postImage.image = image
+        }
     }
     
     }

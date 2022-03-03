@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class ProfileViewController: UIViewController {
     let cellID = "cellID"
@@ -69,12 +70,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! PostTableViewCell
-            let postCell = Posts.content[indexPath.row]
+        let postCell = Posts.content[indexPath.row]
         cell.authorLabel.text = postCell.author
-        cell.postImage.image = UIImage(named: postCell.image)
         cell.descriptionLabel.text = postCell.description
         cell.likesLabel.text = "Likes: \(postCell.likes)"
         cell.viewsLabel.text = "Views: \(postCell.views)"
+        cell.indexPath = indexPath
+        cell.configureCell(imageFilter: ColorFilter.randomFilter())
             return cell
 
         }
@@ -107,13 +109,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             avatarImageView?.clipsToBounds = true
         }
         setupAvatarImageView()
-        
-        
-//        var heightAvatar: CGFloat = 0
-//        if avatarImageView != nil {
-//            heightAvatar = avatarImageView!.bounds.size.height / avatarImageView!.bounds.size.width
-//        }
-       
   
         func setupBackgroundView() {
             backgroundView = UIView(frame: UIScreen.main.bounds)
@@ -121,7 +116,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             backgroundView?.alpha = 0
         }
         setupBackgroundView()
-        
         
         func setupCrossButton(){
             crossButton = UIButton(type: .system)
@@ -141,7 +135,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
         self.tabBarController?.tabBar.isHidden = true
     
-        
+    
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1){
                 self.avatarImageView?.bounds.size.width = UIScreen.main.bounds.width
@@ -228,6 +222,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(photosVC, animated: true)
     }
 }
+   
 }
     
-
+extension ColorFilter {
+    static func randomFilter() -> ColorFilter {
+        let randomInt = Int.random(in: 0...ColorFilter.allCases.count)
+        return self.allCases[randomInt]
+    }
+}
