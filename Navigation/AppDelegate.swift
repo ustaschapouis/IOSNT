@@ -28,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let profileVC = LoginViewController()
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileIcon"), tag: 1)
-        profileVC.delegate = LoginInspector()
+        /// Задача 1. Внедрение LoginInspector
+//        profileVC.delegate = LoginInspector()
+        profileVC.delegate = MyLoginFactory().loginFactoryInspector()
         
         
         
