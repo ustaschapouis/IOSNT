@@ -6,8 +6,12 @@
 //
 
 import UIKit
+    
 
 class LoginViewController: UIViewController {
+    
+    private let currentUser = CurrentUserService()
+    private let testUser = TestUserService()
     
     let logoImage: UIImageView = {
         let logo = UIImageView()
@@ -128,10 +132,29 @@ class LoginViewController: UIViewController {
     }
     
     @objc func tap() {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
-    }
+        #if DEBUG
 
+        if let enteredName = userTextField.text, (testUser.returnUser(userName: enteredName) != nil) {
+            let profileVC = ProfileViewController(userService: testUser, enteredUserName: enteredName)
+            navigationController?.pushViewController(profileVC, animated: true)
+            print("Correct Login")
+        } else {
+            print("WRONG LOGIN!!!")
+        }
+        
+        #else
+        if let enterdName = userTextField.text, (currentUser.returnUser(userName: enterdName) != nil) {
+            let profileVC = ProfileViewController(userService: currentUser, enteredUserName: enterdName)
+            navigationController?.pushViewController(profileVC, animated: true)
+            print("Correct login")
+        } else {
+            print("WRONG LOGIN!!!")
+        }
+
+    #endif
+    }
+    
+    
     func setUpConstraints() {
         NSLayoutConstraint.activate([
         scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -176,5 +199,9 @@ class LoginViewController: UIViewController {
 
     }
 
-    
 }
+
+
+
+
+

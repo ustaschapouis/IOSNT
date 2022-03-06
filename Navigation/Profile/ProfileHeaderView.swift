@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
-    
+
     private var statusText = ""
     
     var animeHeightAnchor: NSLayoutConstraint!
@@ -136,6 +136,8 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = statusField.text!
            }
+    
+    
 }
        
   

@@ -16,6 +16,19 @@ class ProfileViewController: UIViewController {
     private var crossButton: UIButton?
     let photos = Photos()
     
+    let userService: UserService
+    let enteredUserName: String
+    
+    init(userService: UserService, enteredUserName: String) {
+        self.userService = userService
+        self.enteredUserName = enteredUserName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -231,3 +244,7 @@ extension ColorFilter {
         return self.allCases[randomInt]
     }
 }
+
+
+
+
