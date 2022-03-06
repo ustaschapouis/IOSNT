@@ -10,7 +10,7 @@ import UIKit
 
 class TestUserService: UserService {
     
-    let user = User(userName: "Test")
+    let user = User()
     
     func returnUser(userName: String) -> User? {
         if userName == user.userName {

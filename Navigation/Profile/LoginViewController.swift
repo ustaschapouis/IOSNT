@@ -13,6 +13,8 @@ class LoginViewController: UIViewController {
     private let currentUser = CurrentUserService()
     private let testUser = TestUserService()
     
+    var delegate: LoginViewControllerDelegate?
+    
     let logoImage: UIImageView = {
         let logo = UIImageView()
         logo.translatesAutoresizingMaskIntoConstraints = false

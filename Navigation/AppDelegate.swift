@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         
+        var loginInspector = LoginInspector()
+        
         let tabBarController = UITabBarController()
         
         let feedVC = FeedViewController()
@@ -26,6 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let profileVC = LoginViewController()
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileIcon"), tag: 1)
+        profileVC.delegate = LoginInspector()
+        
+        
+        
         
         let feedNavVC = UINavigationController(rootViewController: feedVC)
         let profileNavVC = UINavigationController(rootViewController: profileVC)
