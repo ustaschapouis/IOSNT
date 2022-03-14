@@ -37,11 +37,11 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, ImageLib
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-//        for i in Images.allCases {
-//            print(i)
-//            receivedImages.append(i.image(name: i))
-//        }
+        for i in Images.allCases {
+            print(i)
+            receivedImages.append(i.image(name: i))
+        }
+        
         
 //        let x = Images.checkmark
 //        receivedImages.append(x.image(name: .checkmark))
