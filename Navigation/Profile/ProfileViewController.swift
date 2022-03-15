@@ -159,72 +159,30 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                     UIView.animateKeyframes(withDuration: 0.3, delay: 0, options: [], animations: {
                         UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.2) {
                             if self.avatarImageView != nil
-//                                && self.crossButton != nil
-                            {
-                                self.crossButton.frame.origin = CGPoint(
+                            { self.crossButton.frame.origin = CGPoint(
                                     x: self.avatarImageView!.frame.midX + 35,
-//                                    self.crossButton!.bounds.size.width * 1.5,
                                     y: 15)
-                            }
-                        }
+                }
+                }
         UIView.addKeyframe(withRelativeStartTime: 0.1, relativeDuration: 0.2) {
                             self.crossButton.alpha = 1
                 }
             })
-                       })
+            })
                        
-
         avatarImageView?.isUserInteractionEnabled = true
         crossButton.isUserInteractionEnabled = true
         let exitTap = UITapGestureRecognizer(target: self, action: #selector(reversViewAnimate))
         crossButton.addGestureRecognizer(exitTap)
-        
-//        crossButton.addTarget(self, action: #selector(self.reversViewAnimate), for: .touchUpInside)
         self.view.layoutIfNeeded()
             }
-        
-//        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
-//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1){
-//                self.avatarImageView?.bounds.size.width = UIScreen.main.bounds.width
-//                self.avatarImageView?.layer.cornerRadius = self.view.bounds.height / 2
-//            }
-//            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){
-//                self.avatarImageView?.center = CGPoint(
-//                    x: self.view.bounds.midX,
-//                    y: self.view.bounds.midY)
-//            }
-//            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){
-//                self.avatarImageView?.layer.cornerRadius = 0
-//            }
-//            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){
-//                self.backgroundView?.alpha = 0.7
-//            }
-//
-//        }, completion: {finished in
-//            UIView.animateKeyframes(withDuration: 0.3, delay: 0, options: [], animations: {
-//                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.2) {
-//                    if self.avatarImageView != nil && self.crossButton != nil{
-//                        self.crossButton?.frame.origin = CGPoint(
-//                            x: self.avatarImageView!.frame.maxX - self.crossButton!.bounds.size.width * 1.5,
-//                            y: 0)
-//                    }
-//                }
-//
-//                UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.8) {
-//                    self.crossButton?.alpha = 1
-//                }
-//            })
-//        })
-////
-//
-        
+      
 
     @objc func reversViewAnimate(){
         self.view.layoutIfNeeded()
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){
                 self.crossButton.alpha = 0
-//                self.crossButton = nil
             }
 
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){

@@ -12,15 +12,17 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .orange
-
-        let button = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
+        
+        let alertButton: MyCustomButton = {
+        let button = MyCustomButton(title: "Alert", color: .systemGray, target: tap)
+        button.frame =  CGRect(x: 100, y: 300, width: 200, height: 50)
         button.center = self.view.center
-            button.setTitle("Alert", for: .normal)
-            button.addTarget(self, action: #selector(tap), for: .touchUpInside)
-            button.backgroundColor = .darkGray
-            button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .darkGray
+        button.setTitleColor(.black, for: .normal)
+        return button
+        }()
             
-            view.addSubview(button)
+        view.addSubview(alertButton)
     }
     
     @objc func tap() {

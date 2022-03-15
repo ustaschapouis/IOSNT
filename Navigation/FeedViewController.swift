@@ -17,9 +17,8 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Feed"
         
-        let button1 = UIButton()
-        button1.setTitle("Button 1", for: .normal)
-        button1.setTitleColor(UIColor.black, for: .normal)
+        let button1: MyCustomButton = {
+        let button1 = MyCustomButton(title: "Button1", color: .black, target: tap)
         button1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button1.backgroundColor = .systemGray
         button1.layer.cornerRadius = 10
@@ -29,12 +28,12 @@ class FeedViewController: UIViewController {
         button1.layer.shadowOpacity = 0.5
         button1.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button1.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        button1.addTarget(self, action: #selector(tap), for: .touchUpInside)
+        return button1
+        }()
         
-        
-        let button2 = UIButton()
-        button2.setTitle("Button 2", for: .normal)
-        button2.setTitleColor(UIColor.black, for: .normal)
+        let button2: MyCustomButton = {
+        let button2 = MyCustomButton(title: "Button2", color: .black, target: tap)
+        button2.setTitleColor(.black, for: .normal)
         button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button2.backgroundColor = .systemGray2
         button2.layer.cornerRadius = 10
@@ -44,8 +43,8 @@ class FeedViewController: UIViewController {
         button2.layer.shadowOpacity = 0.5
         button2.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button2.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        button2.addTarget(self, action: #selector(tap), for: .touchUpInside)
-        
+        return button2
+        }()
         
         stackView.axis = NSLayoutConstraint.Axis.vertical
         stackView.distribution = UIStackView.Distribution.equalSpacing

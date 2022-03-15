@@ -15,13 +15,13 @@ class PostViewController: UIViewController {
         view.backgroundColor = .magenta
         title = "Post"
        
-        let button = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
+        let button: MyCustomButton = {
+        let button = MyCustomButton(title: "InfoViewController", color: .systemGray, target: tap)
+        button.frame = CGRect(x: 100, y: 300, width: 200, height: 50)
         button.center = self.view.center
-            button.setTitle("InfoViewController", for: .normal)
-            button.addTarget(self, action: #selector(tap), for: .touchUpInside)
-            button.backgroundColor = .darkGray
-            button.setTitleColor(.black, for: .normal)
-            
+        button.setTitleColor(.black, for: .normal)
+        return button
+        }()
             view.addSubview(button)
         
     }
