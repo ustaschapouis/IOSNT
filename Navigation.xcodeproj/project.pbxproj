@@ -33,6 +33,7 @@
 		FA9B540A27D13C8A00721E17 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B540927D13C8A00721E17 /* Checker.swift */; };
 		FA9B540C27D13D4100721E17 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B540B27D13D4100721E17 /* LoginViewControllerDelegate.swift */; };
 		FAA0124D27D4E7F000D56B0A /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0124C27D4E7F000D56B0A /* LoginInspector.swift */; };
+		FAA0244127DF7A1200229AC2 /* MyCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		FA9B540927D13C8A00721E17 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Checker.swift; path = "/Users/macbook/Desktop/IOS programming/IOSNT/Checker.swift"; sourceTree = "<absolute>"; };
 		FA9B540B27D13D4100721E17 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		FAA0124C27D4E7F000D56B0A /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				3C40D3D926DE71F500005423 /* ProfileHeaderView.swift */,
+				FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */,
 				3C40D3DB26DE720F00005423 /* ProfileViewController.swift */,
 				3C5A9F7B26E91CF70056973A /* LoginViewController.swift */,
 				3CC0ED2A26FDBE8700ADB19C /* Post.swift */,
@@ -302,6 +305,7 @@
 				FA13A49F27D0F2230029D44F /* UserService.swift in Sources */,
 				FA13A4A227D0F7AC0029D44F /* TestUserService.swift in Sources */,
 				3CC0ED2F26FDD94800ADB19C /* PhotosViewController.swift in Sources */,
+				FAA0244127DF7A1200229AC2 /* MyCustomButton.swift in Sources */,
 				3CC0ED2526F1DAC200ADB19C /* PostTableViewCell.swift in Sources */,
 				FA9B540C27D13D4100721E17 /* LoginViewControllerDelegate.swift in Sources */,
 				3C2FDE6D26D91083005D55A0 /* PostViewController.swift in Sources */,

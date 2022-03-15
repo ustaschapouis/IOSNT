@@ -22,17 +22,29 @@ class LoginViewController: UIViewController {
         return logo
     }()
     
-    let loginButton: UIButton = {
-        let button = UIButton()
+//    let loginButton: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle("Log In", for: .normal)
+//        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.layer.cornerRadius = 10
+//        button.layer.borderColor = UIColor.lightGray.cgColor
+//        button.layer.borderWidth = 0.5
+//        button.clipsToBounds = true
+//        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
+//        return button
+//    }()
+    /// Custom Button
+    /// 
+    private let color = UIColor(patternImage: UIImage(named: "blue_pixel")!)
+    private lazy var loginButton: MyCustomButton = {
+        let button = MyCustomButton(title: "Login", color: color, target: tap)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Log In", for: .normal)
-        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 0.5
         button.clipsToBounds = true
-        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         return button
     }()
     
