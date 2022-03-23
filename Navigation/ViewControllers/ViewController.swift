@@ -8,9 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    weak var coordinator: MainCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .green
      
     }
 

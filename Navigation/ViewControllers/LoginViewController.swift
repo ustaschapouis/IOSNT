@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
     
     var delegate: LoginViewControllerDelegate?
     
+    var coordinator: Coordinator?
+    
     let logoImage: UIImageView = {
         let logo = UIImageView()
         logo.translatesAutoresizingMaskIntoConstraints = false

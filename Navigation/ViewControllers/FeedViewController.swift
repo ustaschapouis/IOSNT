@@ -7,12 +7,10 @@
 
 import UIKit
 
-
-
 class FeedViewController: UIViewController {
 
     var checker = TextChecker()
-    
+    var coordinator: Coordinator?
     let feedView = UIView()
     
     private lazy var customButton1: MyCustomButton = {
@@ -32,6 +30,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .blue
         self.title = "Feed"
         feedView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -68,7 +67,6 @@ class FeedViewController: UIViewController {
         feedView.addSubview(customButton1)
         feedView.addSubview(customTextFIeld)
         
-    
         NSLayoutConstraint.activate([
             feedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             feedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -96,7 +94,6 @@ class FeedViewController: UIViewController {
             customTextFIeld.widthAnchor.constraint(equalToConstant: 170),
             customTextFIeld.topAnchor.constraint(equalTo: feedView.topAnchor, constant: 140)
         ])
-        
     }
     
     @objc func tap() {
@@ -112,10 +109,7 @@ class FeedViewController: UIViewController {
         } else {
             customTextFIeld.textColor = .red
         }
-        
-        
     }
-    
 }
     
 
