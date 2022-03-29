@@ -8,19 +8,19 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .orange
-
+        
         let button = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
         button.center = self.view.center
-            button.setTitle("Alert", for: .normal)
-            button.addTarget(self, action: #selector(tap), for: .touchUpInside)
-            button.backgroundColor = .darkGray
-            button.setTitleColor(.black, for: .normal)
-            
-            view.addSubview(button)
+        button.setTitle("Alert", for: .normal)
+        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
+        button.backgroundColor = .darkGray
+        button.setTitleColor(.black, for: .normal)
+        
+        view.addSubview(button)
     }
     
     @objc func tap() {
@@ -39,9 +39,9 @@ class InfoViewController: UIViewController {
     }
     
     
-       
-        
-      
-    }
+    
+    
+    
+}
 
 

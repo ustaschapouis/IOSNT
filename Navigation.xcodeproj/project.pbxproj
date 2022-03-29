@@ -23,9 +23,9 @@
 		3CC0ED2F26FDD94800ADB19C /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC0ED2E26FDD94800ADB19C /* PhotosViewController.swift */; };
 		3CC0ED3126FE243B00ADB19C /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC0ED3026FE243B00ADB19C /* PhotosCollectionViewCell.swift */; };
 		A6E6A37999563158F393EF5A /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C332ED427B05A3B9322E44A /* Pods_Navigation.framework */; };
-		FA13A49E27D0F2230029D44F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A49B27D0F2220029D44F /* User.swift */; };
-		FA13A49F27D0F2230029D44F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A49C27D0F2230029D44F /* UserService.swift */; };
-		FA13A4A027D0F2230029D44F /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A49D27D0F2230029D44F /* CurrentUserService.swift */; };
+		FA09DFF027F2E247002610B4 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA09DFEF27F2E247002610B4 /* CurrentUserService.swift */; };
+		FA09DFF227F2E25C002610B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA09DFF127F2E25C002610B4 /* User.swift */; };
+		FA09DFF427F2E279002610B4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA09DFF327F2E279002610B4 /* UserService.swift */; };
 		FA13A4A227D0F7AC0029D44F /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A4A127D0F7AC0029D44F /* TestUserService.swift */; };
 		FA930B3E276CD32500D0C405 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = FA930B3D276CD32500D0C405 /* iOSIntPackage */; };
 		FA96F1A327D5483D00FC3672 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96F1A227D5483D00FC3672 /* LoginFactory.swift */; };
@@ -56,9 +56,9 @@
 		798AF286EA023EEC4EB60466 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		8C332ED427B05A3B9322E44A /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12E853E5EDE1E8AE17280F9 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
-		FA13A49B27D0F2220029D44F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../.Trash/User.swift; sourceTree = "<group>"; };
-		FA13A49C27D0F2230029D44F /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = ../../../.Trash/UserService.swift; sourceTree = "<group>"; };
-		FA13A49D27D0F2230029D44F /* CurrentUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUserService.swift; path = ../../../.Trash/CurrentUserService.swift; sourceTree = "<group>"; };
+		FA09DFEF27F2E247002610B4 /* CurrentUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		FA09DFF127F2E25C002610B4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA09DFF327F2E279002610B4 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FA13A4A127D0F7AC0029D44F /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		FA96F1A227D5483D00FC3672 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		FA96F1A427D548E900FC3672 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
@@ -154,10 +154,10 @@
 		FA13A49A27D0F2010029D44F /* User */ = {
 			isa = PBXGroup;
 			children = (
-				FA13A49D27D0F2230029D44F /* CurrentUserService.swift */,
-				FA13A49B27D0F2220029D44F /* User.swift */,
+				FA09DFEF27F2E247002610B4 /* CurrentUserService.swift */,
+				FA09DFF127F2E25C002610B4 /* User.swift */,
 				FA13A4A127D0F7AC0029D44F /* TestUserService.swift */,
-				FA13A49C27D0F2230029D44F /* UserService.swift */,
+				FA09DFF327F2E279002610B4 /* UserService.swift */,
 				FA9B540927D13C8A00721E17 /* Checker.swift */,
 			);
 			name = User;
@@ -289,22 +289,22 @@
 				3CC0ED2B26FDBE8700ADB19C /* Post.swift in Sources */,
 				3CC0ED3126FE243B00ADB19C /* PhotosCollectionViewCell.swift in Sources */,
 				3CC0ED2926F9CA6700ADB19C /* PhotosTableViewCell.swift in Sources */,
-				FA13A4A027D0F2230029D44F /* CurrentUserService.swift in Sources */,
+				FA09DFF427F2E279002610B4 /* UserService.swift in Sources */,
 				FAA0124D27D4E7F000D56B0A /* LoginInspector.swift in Sources */,
 				FA96F1A327D5483D00FC3672 /* LoginFactory.swift in Sources */,
 				FA9B540A27D13C8A00721E17 /* Checker.swift in Sources */,
 				FA96F1A527D548E900FC3672 /* MyLoginFactory.swift in Sources */,
-				FA13A49E27D0F2230029D44F /* User.swift in Sources */,
 				3C2FDE6926D8CA72005D55A0 /* FeedViewController.swift in Sources */,
 				3C5A9F7C26E91CF70056973A /* LoginViewController.swift in Sources */,
 				3C40D3DC26DE720F00005423 /* ProfileViewController.swift in Sources */,
 				3C2FDE6F26DA4E04005D55A0 /* InfoViewController.swift in Sources */,
-				FA13A49F27D0F2230029D44F /* UserService.swift in Sources */,
 				FA13A4A227D0F7AC0029D44F /* TestUserService.swift in Sources */,
+				FA09DFF027F2E247002610B4 /* CurrentUserService.swift in Sources */,
 				3CC0ED2F26FDD94800ADB19C /* PhotosViewController.swift in Sources */,
 				3CC0ED2526F1DAC200ADB19C /* PostTableViewCell.swift in Sources */,
 				FA9B540C27D13D4100721E17 /* LoginViewControllerDelegate.swift in Sources */,
 				3C2FDE6D26D91083005D55A0 /* PostViewController.swift in Sources */,
+				FA09DFF227F2E25C002610B4 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ class PostTableViewCell: UITableViewCell {
     
     var indexPath: IndexPath?
     let imageProcessor = ImageProcessor()
-
+    
     let postImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -64,7 +64,7 @@ class PostTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-      
+        
     }
     
     func setupCellView() {
@@ -106,9 +106,9 @@ class PostTableViewCell: UITableViewCell {
     private func setupImage(imageFilter: ColorFilter) {
         
         guard let indexPath = indexPath else {
-                  return
-                  
-              }
+            return
+            
+        }
         let postCell = Posts.content[indexPath.row]
         guard let image = UIImage(named: postCell.image) else { return }
         imageProcessor.processImage(
@@ -119,6 +119,6 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-    }
+}
 
 
