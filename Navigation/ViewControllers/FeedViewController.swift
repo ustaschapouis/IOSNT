@@ -8,26 +8,26 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-
-    var checker = TextChecker()
-    var coordinator: Coordinator?
-    let feedView = UIView()
     
     private lazy var customButton1: MyCustomButton = {
-    let button = MyCustomButton(title: "Press Me!", color: .red, target: enteredWordCheck)
-    button.layer.cornerRadius = 8
-    button.translatesAutoresizingMaskIntoConstraints = false
-    return button
+        let button = MyCustomButton(title: "Press Me!", color: .red, target: enteredWordCheck)
+        button.layer.cornerRadius = 8
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private lazy var customTextFIeld: MyCustomTextField = {
-    let textField = MyCustomTextField(font: .boldSystemFont(ofSize: 15), textColor: .black, backgroundColor: .systemGray, placeholder: "This is gonna be text")
-    textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.layer.cornerRadius = 8
+        let textField = MyCustomTextField(font: .boldSystemFont(ofSize: 15), textColor: .black, backgroundColor: .systemGray, placeholder: "This is gonna be text")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.layer.cornerRadius = 8
         textField.textAlignment = .center
-    return textField
+        return textField
     }()
     
+    var checker = TextChecker()
+    var coordinator: Coordinator?
+    let feedView = UIView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
@@ -35,30 +35,30 @@ class FeedViewController: UIViewController {
         feedView.translatesAutoresizingMaskIntoConstraints = false
         
         let button1: MyCustomButton = {
-        let button1 = MyCustomButton(title: "Button1", color: .black, target: tap)
-        button1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button1.backgroundColor = .systemGray
-        button1.layer.cornerRadius = 10
-        button1.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button1.layer.shadowRadius = 4
-        button1.layer.shadowColor = UIColor.black.cgColor
-        button1.layer.shadowOpacity = 0.5
-        button1.translatesAutoresizingMaskIntoConstraints = false
-        return button1
+            let button1 = MyCustomButton(title: "Button1", color: .black, target: tap)
+            button1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            button1.backgroundColor = .systemGray
+            button1.layer.cornerRadius = 10
+            button1.layer.shadowOffset = CGSize(width: 4, height: 4)
+            button1.layer.shadowRadius = 4
+            button1.layer.shadowColor = UIColor.black.cgColor
+            button1.layer.shadowOpacity = 0.5
+            button1.translatesAutoresizingMaskIntoConstraints = false
+            return button1
         }()
         
         let button2: MyCustomButton = {
-        let button2 = MyCustomButton(title: "Button2", color: .black, target: tap)
-        button2.setTitleColor(.black, for: .normal)
-        button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button2.backgroundColor = .systemGray2
-        button2.layer.cornerRadius = 10
-        button2.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button2.layer.shadowRadius = 4
-        button2.layer.shadowColor = UIColor.black.cgColor
-        button2.layer.shadowOpacity = 0.5
-        button2.translatesAutoresizingMaskIntoConstraints = false
-        return button2
+            let button2 = MyCustomButton(title: "Button2", color: .black, target: tap)
+            button2.setTitleColor(.black, for: .normal)
+            button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            button2.backgroundColor = .systemGray2
+            button2.layer.cornerRadius = 10
+            button2.layer.shadowOffset = CGSize(width: 4, height: 4)
+            button2.layer.shadowRadius = 4
+            button2.layer.shadowColor = UIColor.black.cgColor
+            button2.layer.shadowOpacity = 0.5
+            button2.translatesAutoresizingMaskIntoConstraints = false
+            return button2
         }()
         
         view.addSubview(feedView)
@@ -66,6 +66,7 @@ class FeedViewController: UIViewController {
         feedView.addSubview(button2)
         feedView.addSubview(customButton1)
         feedView.addSubview(customTextFIeld)
+        
         
         NSLayoutConstraint.activate([
             feedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -97,13 +98,13 @@ class FeedViewController: UIViewController {
     }
     
     @objc func tap() {
-        let postVC = PostViewController(nibName: nil, bundle: nil)
+        let postVC = PostViewController(viewModel: PostViewModel())
         navigationController?.pushViewController(postVC, animated: true)
         
     }
-
-   private func enteredWordCheck() {
-       let checkingWord = checker.check(word: customTextFIeld.text!)
+    
+    private func enteredWordCheck() {
+        let checkingWord = checker.check(word: customTextFIeld.text!)
         if checkingWord == true {
             customTextFIeld.textColor = .green
         } else {
@@ -111,7 +112,6 @@ class FeedViewController: UIViewController {
         }
     }
 }
-    
 
 
 
@@ -120,5 +120,6 @@ class FeedViewController: UIViewController {
 
 
 
-    
+
+
 

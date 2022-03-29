@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 
 class ProfileCoordinator: Coordinator {
-    var childCoordinators: [Coordinator] = []
     weak var parentCoordinator: Coordinator?
     
+    var childCoordinators: [Coordinator] = []
     var loginInspector = LoginInspector()
-    
     var navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        
         
     }
     
@@ -31,6 +31,6 @@ class ProfileCoordinator: Coordinator {
         profileVC.delegate = MyLoginFactory().loginFactoryInspector()
         print("PROFILE")
         return navigationController
-   
+        
     }
 }

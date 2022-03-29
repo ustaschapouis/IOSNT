@@ -15,7 +15,7 @@ class FeedCoordinator: Coordinator {
     var navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-    
+        
     }
     
     func start() {
@@ -27,7 +27,9 @@ class FeedCoordinator: Coordinator {
         feedVC.coordinator = self
         navigationController.pushViewController(feedVC, animated: true)
         print("FEED")
-    return navigationController
-    
+        return navigationController
     }
+    
+  
 }
+

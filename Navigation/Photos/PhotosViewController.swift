@@ -60,10 +60,10 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, ImageLib
         super.viewWillAppear(animated)
         imagePublisherFacade.subscribe(self)
     }
-        
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-            
+        
         navigationController?.navigationBar.isHidden = true
         imagePublisherFacade.removeSubscription(for: self)
     }
@@ -88,9 +88,9 @@ extension PhotosViewController: UICollectionViewDataSource {
         guard receivedImages.isEmpty == false else {
             return cell
         }
-      
+        
         cell.feedPhoto.image = receivedImages[indexPath.item]
-       
+        
         return cell
     }
 }
