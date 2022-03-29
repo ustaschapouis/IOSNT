@@ -22,13 +22,11 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, ImageLib
     
     var receivedImages = [UIImage]()
     var imagePublisherFacade = ImagePublisherFacade()
-    
     var photos: Photos
-    
+    var imageProcessor = ImageProcessor()
     init(photos: Photos) {
         self.photos = photos
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -37,43 +35,56 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, ImageLib
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for i in Images.allCases {
-            print(i)
-            receivedImages.append(i.image(name: i))
-        }
-        
         view.addSubview(collectionView)
-        navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = "Photo Gallery"
         navigationController?.navigationBar.backgroundColor = .white
-        imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 10, userImages: receivedImages)
+        processImages()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
         collectionView.frame = CGRect(x: view.safeAreaInsets.left, y: view.safeAreaInsets.top, width: view.frame.width, height: view.frame.height - view.safeAreaInsets.top)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
         imagePublisherFacade.subscribe(self)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        navigationController?.navigationBar.isHidden = true
         imagePublisherFacade.removeSubscription(for: self)
     }
     
     func receive(images: [UIImage]) {
         receivedImages = images
+        images.forEach {
+            self.receivedImages.append($0)
+        }
         collectionView.reloadData()
+        
+    }
+    
+    private func processImages() {
+        var processedImages = [UIImage]()
+        imageProcessor.processImagesOnThread(sourceImages: photos.images, filter: .posterize, qos: .utility) { [self] processedPhoto in
+            for photo in processedPhoto {
+                if let image = photo {
+                    processedImages.append(UIImage(cgImage: image))
+                }
+            }
+            DispatchQueue.main.async {
+                imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: processedImages)
+                print("Succeed")
+            }
+        }
     }
 }
-
+/// filter: noir, qos: userInteractive - 14 секунд
+///filter: fade, userInteractive: background - больше 1 минуты
+///filter: posterize, qos: utility - 17 секунд
 
 extension PhotosViewController: UICollectionViewDataSource {
     
@@ -82,15 +93,11 @@ extension PhotosViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        
         guard receivedImages.isEmpty == false else {
             return cell
         }
-        
         cell.feedPhoto.image = receivedImages[indexPath.item]
-        
         return cell
     }
 }
@@ -113,3 +120,4 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }
+
