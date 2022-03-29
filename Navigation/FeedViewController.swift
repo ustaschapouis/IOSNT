@@ -10,7 +10,7 @@ import UIKit
 
 
 class FeedViewController: UIViewController {
-
+    
     let stackView = UIStackView()
     
     override func viewDidLoad() {
@@ -73,7 +73,6 @@ class FeedViewController: UIViewController {
     
     
 }
-    
 
 
 
@@ -82,5 +81,6 @@ class FeedViewController: UIViewController {
 
 
 
-    
+
+
 

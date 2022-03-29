@@ -9,9 +9,9 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let profileVC = LoginViewController()
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileIcon"), tag: 1)
         /// Задача 1. Внедрение LoginInspector
-//        profileVC.delegate = LoginInspector()
+        //        profileVC.delegate = LoginInspector()
         profileVC.delegate = MyLoginFactory().loginFactoryInspector()
         
         
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let feedNavVC = UINavigationController(rootViewController: feedVC)
         let profileNavVC = UINavigationController(rootViewController: profileVC)
-            
+        
         tabBarController.viewControllers = [feedNavVC, profileNavVC]
         
         window?.rootViewController = tabBarController
@@ -45,6 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
+    
 }
 

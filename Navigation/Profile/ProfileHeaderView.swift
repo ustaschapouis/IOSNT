@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
-
+    
     private var statusText = ""
     
     var animeHeightAnchor: NSLayoutConstraint!
@@ -37,7 +37,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     
-  
+    
     let avatarImage: UIImageView = {
         let avatar = UIImageView()
         avatar.image = UIImage(named: "avatar")
@@ -50,7 +50,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         avatar.translatesAutoresizingMaskIntoConstraints = false
         return avatar
     }()
-
+    
     
     let nameTextField: UILabel = {
         let textLabel = UILabel()
@@ -60,7 +60,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         return textLabel
     }()
-//    
+    //
     let statusField: UITextField = {
         let status = UITextField()
         status.backgroundColor = .white
@@ -80,7 +80,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         return statusLabel
     }()
-
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -135,17 +135,17 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = statusField.text!
-           }
+    }
     
     
 }
-       
-  
-
-   
-        
-    
 
 
-    
- 
+
+
+
+
+
+
+
+

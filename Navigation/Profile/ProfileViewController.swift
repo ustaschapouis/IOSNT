@@ -15,30 +15,30 @@ class ProfileViewController: UIViewController {
     private var backgroundView:  UIView?
     private var crossButton: UIButton?
     let photos = Photos()
-
+    
     let userService: UserService
     let enteredUserName: String
-
+    
     init(userService: UserService, enteredUserName: String) {
         self.userService = userService
         self.enteredUserName = enteredUserName
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
         setupConstraints()
     }
-
+    
     func setupView () {
         view.addSubview(tableView)
-
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellID)
         tableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
@@ -46,13 +46,13 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .systemGray5
-
+        
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-
+    
     func setupConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -61,8 +61,8 @@ class ProfileViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         ])
     }
-
-
+    
+    
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -72,7 +72,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return Posts.content.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Photos", for: indexPath) as! PhotosTableViewCell
@@ -80,10 +80,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.feedPhoto2.image = UIImage(named: photos.photos[indexPath.row + 1])
             cell.feedPhoto3.image = UIImage(named: photos.photos[indexPath.row + 2])
             cell.feedPhoto4.image = UIImage(named: photos.photos[indexPath.row + 3])
-
+            
             return cell
         }
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! PostTableViewCell
         let postCell = Posts.content[indexPath.row]
         cell.authorLabel.text = postCell.author
@@ -92,30 +92,30 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         cell.viewsLabel.text = "Views: \(postCell.views)"
         cell.indexPath = indexPath
         cell.configureCell(imageFilter: ColorFilter.randomFilter())
-            return cell
-
-        }
-
+        return cell
+        
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileTableHeaderView
-
-
-        header.avatarImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarResize)))
+            
+            
+            header.avatarImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarResize)))
             header.avatarImage.isUserInteractionEnabled = true
-
+            
             return header
         } else {
             return nil
         }
-
+        
     }
-
+    
     @objc func avatarResize(sender: UITapGestureRecognizer) {
-
+        
         self.view.layoutIfNeeded()
-
-
+        
+        
         func setupAvatarImageView(){
             let imageView = sender.view as! UIImageView
             avatarImageView = UIImageView(image: imageView.image)
@@ -124,14 +124,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             avatarImageView?.clipsToBounds = true
         }
         setupAvatarImageView()
-
+        
         func setupBackgroundView() {
             backgroundView = UIView(frame: UIScreen.main.bounds)
             backgroundView?.backgroundColor = UIColor.white
             backgroundView?.alpha = 0
         }
         setupBackgroundView()
-
+        
         func setupCrossButton(){
             crossButton = UIButton(type: .system)
             crossButton?.setBackgroundImage(UIImage(systemName: "cross"), for: .normal)
@@ -141,15 +141,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             crossButton?.alpha = 0
         }
         setupCrossButton()
-
-
+        
+        
         self.view.addSubview(backgroundView ?? UIImageView())
         self.view.addSubview(avatarImageView ?? UIView())
         avatarImageView?.addSubview(crossButton ?? UIButton())
-
-
+        
+        
         self.tabBarController?.tabBar.isHidden = true
-
+        
         
         
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
@@ -168,7 +168,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){
                 self.backgroundView?.alpha = 0.7
             }
-
+            
         }, completion: {finished in
             UIView.animateKeyframes(withDuration: 0.3, delay: 0, options: [], animations: {
                 UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.2) {
@@ -178,21 +178,21 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                             y: 0)
                     }
                 }
-
+                
                 UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.8) {
                     self.crossButton?.alpha = 1
                 }
             })
         })
-//
-//
+        //
+        //
         avatarImageView?.isUserInteractionEnabled = true
         crossButton?.isUserInteractionEnabled = true
-//
+        //
         crossButton?.addTarget(self, action: #selector(self.reversViewAnimate), for: .touchUpInside)
         self.view.layoutIfNeeded()
     }
-
+    
     @objc func reversViewAnimate(){
         self.view.layoutIfNeeded()
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
@@ -200,12 +200,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 self.crossButton?.alpha = 0
                 self.crossButton = nil
             }
-
+            
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){
                 self.backgroundView?.alpha = 0
                 self.backgroundView = nil
             }
-
+            
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){
                 self.avatarImageView?.alpha = 0
                 self.avatarImageView?.layer.cornerRadius = self.view.bounds.height / 2
@@ -219,26 +219,26 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         })
         self.view.layoutIfNeeded()
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-        return 220
+            return 220
         } else {
             return 0
         }
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photosVC = PhotosViewController(photos: photos)
         if indexPath.section == 0 {
-        navigationController?.pushViewController(photosVC, animated: true)
+            navigationController?.pushViewController(photosVC, animated: true)
+        }
     }
-}
-
+    
 }
 
 extension ColorFilter {
