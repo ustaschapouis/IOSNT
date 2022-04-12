@@ -42,9 +42,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, ImageLib
             receivedImages.append(i.image(name: i))
         }
         
-        
-//        let x = Images.checkmark
-//        receivedImages.append(x.image(name: .checkmark))
         view.addSubview(collectionView)
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = "Photo Gallery"

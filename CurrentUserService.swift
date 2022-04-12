@@ -1,14 +1,14 @@
 //
-//  TestUserService.swift
+//  CurrentUserService.swift
 //  Navigation
 //
-//  Created by Владлен on 03.03.2022.
+//  Created by Владлен on 20.03.2022.
 //
 
 import Foundation
 import UIKit
 
-class TestUserService: UserService {
+class CurrentUserService: UserService {
     
     let user = User(userName: "User")
     
@@ -17,6 +17,7 @@ class TestUserService: UserService {
             return user
         } else {
             return nil
-    }
+        }
+        
     }
 }

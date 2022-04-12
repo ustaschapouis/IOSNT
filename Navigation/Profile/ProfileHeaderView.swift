@@ -23,16 +23,28 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         return header
     }()
     
-    let buttonField: UIButton = {
-        let button = UIButton()
-        button.setTitle("Set Status", for: .normal)
-        button.backgroundColor = .systemBlue
+//    let setStatusButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("Set Status", for: .normal)
+//        button.backgroundColor = .systemBlue
+//        button.layer.cornerRadius = 14
+//        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+//        button.layer.shadowRadius = 4
+//        button.layer.shadowColor = UIColor.black.cgColor
+//        button.layer.shadowOpacity = 0.7
+//        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
+    /// custom button
+    /// 
+    private lazy var setStatusButton: MyCustomButton = {
+        let button = MyCustomButton(title: "Set Status", color: .systemBlue, target: tap)
         button.layer.cornerRadius = 14
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -94,7 +106,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     func setupContent() {
         contentView.addSubview(headerView)
         headerView.addSubview(avatarImage)
-        headerView.addSubview(buttonField)
+        headerView.addSubview(setStatusButton)
         headerView.addSubview(nameTextField)
         headerView.addSubview(statusField)
         headerView.addSubview(statusLabelField)
@@ -109,7 +121,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             make.top.left.equalTo(headerView).inset(UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 0))
         }
         
-        buttonField.snp.makeConstraints { (make) in
+        setStatusButton.snp.makeConstraints { (make) in
             make.left.equalTo(16)
             make.size.equalTo(CGSize(width: 380, height: 50))
             make.top.equalTo(contentView).offset(142)
