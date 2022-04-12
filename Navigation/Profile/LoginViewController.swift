@@ -6,12 +6,14 @@
 //
 
 import UIKit
-    
+
 
 class LoginViewController: UIViewController {
     
     private let currentUser = CurrentUserService()
     private let testUser = TestUserService()
+    
+    var delegate: LoginViewControllerDelegate?
     
     let logoImage: UIImageView = {
         let logo = UIImageView()
@@ -66,12 +68,12 @@ class LoginViewController: UIViewController {
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         return passwordField
     }()
-
+    
     let scrollView = UIScrollView()
     let userPasswordView = UIView()
-
+    
     let contentView = UIView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -83,7 +85,7 @@ class LoginViewController: UIViewController {
         userPasswordView.layer.borderWidth = 0.5
         userPasswordView.layer.cornerRadius = 10
         userPasswordView.clipsToBounds = true
-       
+        
         setUpView()
         setUpConstraints()
         
@@ -109,7 +111,7 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-            navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -118,12 +120,12 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-@objc func keyboardWillShow(notification: NSNotification) {
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-        scrollView.contentInset.bottom = keyboardSize.height
-        scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        
-    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            
+        }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -132,8 +134,8 @@ class LoginViewController: UIViewController {
     }
     
     @objc func tap() {
-        #if DEBUG
-
+#if DEBUG
+        
         if let enteredName = userTextField.text, (testUser.returnUser(userName: enteredName) != nil) {
             let profileVC = ProfileViewController(userService: testUser, enteredUserName: enteredName)
             navigationController?.pushViewController(profileVC, animated: true)
@@ -142,7 +144,7 @@ class LoginViewController: UIViewController {
             print("WRONG LOGIN!!!")
         }
         
-        #else
+#else
         if let enterdName = userTextField.text, (currentUser.returnUser(userName: enterdName) != nil) {
             let profileVC = ProfileViewController(userService: currentUser, enteredUserName: enterdName)
             navigationController?.pushViewController(profileVC, animated: true)
@@ -150,55 +152,55 @@ class LoginViewController: UIViewController {
         } else {
             print("WRONG LOGIN!!!")
         }
-
-    #endif
+        
+#endif
     }
     
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([
-        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-        scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-        
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-        contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-        contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-        logoImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
-        logoImage.widthAnchor.constraint(equalToConstant: 100),
-        logoImage.heightAnchor.constraint(equalToConstant: 100),
-        logoImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-        userPasswordView.heightAnchor.constraint(equalToConstant: 100),
-        userPasswordView.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 120),
-        userPasswordView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-        userPasswordView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-        
-        userTextField.topAnchor.constraint(equalTo: userPasswordView.topAnchor),
-        userTextField.heightAnchor.constraint(equalToConstant: 50),
-        userTextField.widthAnchor.constraint(equalTo: userPasswordView.widthAnchor),
-        userTextField.bottomAnchor.constraint(equalTo: userPasswordView.bottomAnchor, constant: -50),
-
-        passwordTextField.bottomAnchor.constraint(equalTo: userPasswordView.bottomAnchor),
-        passwordTextField.heightAnchor.constraint(equalToConstant: 50),
-        passwordTextField.widthAnchor.constraint(equalTo: userPasswordView.widthAnchor),
-        passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor),
-
-        loginButton.topAnchor.constraint(equalTo: userPasswordView.bottomAnchor, constant: 16),
-        loginButton.heightAnchor.constraint(equalToConstant: 50),
-        loginButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-        loginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-        loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
+            logoImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
+            logoImage.widthAnchor.constraint(equalToConstant: 100),
+            logoImage.heightAnchor.constraint(equalToConstant: 100),
+            logoImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            userPasswordView.heightAnchor.constraint(equalToConstant: 100),
+            userPasswordView.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 120),
+            userPasswordView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            userPasswordView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            userTextField.topAnchor.constraint(equalTo: userPasswordView.topAnchor),
+            userTextField.heightAnchor.constraint(equalToConstant: 50),
+            userTextField.widthAnchor.constraint(equalTo: userPasswordView.widthAnchor),
+            userTextField.bottomAnchor.constraint(equalTo: userPasswordView.bottomAnchor, constant: -50),
+            
+            passwordTextField.bottomAnchor.constraint(equalTo: userPasswordView.bottomAnchor),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 50),
+            passwordTextField.widthAnchor.constraint(equalTo: userPasswordView.widthAnchor),
+            passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor),
+            
+            loginButton.topAnchor.constraint(equalTo: userPasswordView.bottomAnchor, constant: 16),
+            loginButton.heightAnchor.constraint(equalToConstant: 50),
+            loginButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            loginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
         ])
         
-      
-
+        
+        
     }
-
+    
 }
 
 

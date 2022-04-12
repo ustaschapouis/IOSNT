@@ -34,9 +34,9 @@ extension PhotosCollectionViewCell {
     func setupCellView() {
         
         contentView.addSubview(feedPhoto)
-
-}
-
+        
+    }
+    
     func setupConstraints() {
         NSLayoutConstraint.activate([
             feedPhoto.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -44,7 +44,7 @@ extension PhotosCollectionViewCell {
             feedPhoto.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             feedPhoto.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
             
-])
-
+        ])
+        
     }
 }

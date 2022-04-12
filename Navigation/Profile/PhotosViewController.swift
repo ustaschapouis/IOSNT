@@ -33,14 +33,14 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         view.addSubview(collectionView)
         collectionView.reloadData()
         navigationController?.setNavigationBarHidden(false, animated: true)
-//        navigationController?.navigationBar.isTranslucent = false
+        //        navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Photo Gallery"
         navigationController?.navigationBar.backgroundColor = .white
-
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -61,7 +61,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
         cell.feedPhoto.image = photos.images[indexPath.row]
-       
+        
         
         return cell
     }
