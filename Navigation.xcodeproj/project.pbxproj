@@ -38,6 +38,7 @@
 		FA9B540C27D13D4100721E17 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B540B27D13D4100721E17 /* LoginViewControllerDelegate.swift */; };
 		FAA0124D27D4E7F000D56B0A /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0124C27D4E7F000D56B0A /* LoginInspector.swift */; };
 		FAA0244127DF7A1200229AC2 /* MyCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */; };
+		FAA03E132805AC9B005245D9 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA03E122805AC9B005245D9 /* BruteForce.swift */; };
 		FAA1908027E7652A009D2619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1907F27E7652A009D2619 /* User.swift */; };
 		FAA1908227E7657D009D2619 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1908127E7657D009D2619 /* UserService.swift */; };
 		FAA1908427E77E84009D2619 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1908327E77E84009D2619 /* CurrentUserService.swift */; };
@@ -81,6 +82,7 @@
 		FA9B540B27D13D4100721E17 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		FAA0124C27D4E7F000D56B0A /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomButton.swift; sourceTree = "<group>"; };
+		FAA03E122805AC9B005245D9 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
 		FAA1907F27E7652A009D2619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FAA1908127E7657D009D2619 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FAA1908327E77E84009D2619 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				FA09DFFF27F2FF06002610B4 /* CoordinatorFactory.swift */,
 				FA09E00127F3008E002610B4 /* PostCoordinator.swift */,
 				FA09E00327F30277002610B4 /* PostViewModel.swift */,
+				FAA03E122805AC9B005245D9 /* BruteForce.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				3CC0ED2F26FDD94800ADB19C /* PhotosViewController.swift in Sources */,
 				FAA1908427E77E84009D2619 /* CurrentUserService.swift in Sources */,
 				FAA0244127DF7A1200229AC2 /* MyCustomButton.swift in Sources */,
+				FAA03E132805AC9B005245D9 /* BruteForce.swift in Sources */,
 				FA98A3C127E0980C004E51C3 /* MyCustomTextField.swift in Sources */,
 				FA09DFFE27F2FBF2002610B4 /* ModelView.swift in Sources */,
 				FAA216A727EA48C0009FAD6C /* FeedCoordinator.swift in Sources */,

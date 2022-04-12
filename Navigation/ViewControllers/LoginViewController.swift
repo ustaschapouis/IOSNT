@@ -25,7 +25,6 @@ class LoginViewController: UIViewController {
     }()
     
     /// Custom Button
-    ///
     private let color = UIColor(patternImage: UIImage(named: "blue_pixel")!)
     private lazy var loginButton: MyCustomButton = {
         let button = MyCustomButton(title: "Login", color: color, target: tap)
@@ -36,6 +35,11 @@ class LoginViewController: UIViewController {
         button.clipsToBounds = true
         return button
     }()
+    
+//    private lazy var generatePassButton: MyCustomButton = {
+//        let button = MyCustomButton(title: "Generate password", color: .white, target: <#T##() -> Void#>)
+//        return button
+//    }()
     
     let userTextField: UITextField = {
         let userField = UITextField()
