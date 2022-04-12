@@ -31,11 +31,11 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
         setupConstraints()
     }
-
+    
     func setupView () {
         view.addSubview(tableView)
         
@@ -61,6 +61,8 @@ class ProfileViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         ])
     }
+    
+    
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -90,29 +92,29 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         cell.viewsLabel.text = "Views: \(postCell.views)"
         cell.indexPath = indexPath
         cell.configureCell(imageFilter: ColorFilter.randomFilter())
-            return cell
-
-        }
-
+        return cell
+        
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileTableHeaderView
             
             
-        header.avatarImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarResize)))
+            header.avatarImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarResize)))
             header.avatarImage.isUserInteractionEnabled = true
-
+            
             return header
         } else {
             return nil
         }
-   
+        
     }
-
+    
     @objc func avatarResize(sender: UITapGestureRecognizer) {
         
         self.view.layoutIfNeeded()
-
+        
         
         func setupAvatarImageView(){
             let imageView = sender.view as! UIImageView
@@ -122,7 +124,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             avatarImageView?.clipsToBounds = true
         }
         setupAvatarImageView()
-  
+        
         func setupBackgroundView() {
             backgroundView = UIView(frame: UIScreen.main.bounds)
             backgroundView?.backgroundColor = UIColor.white
@@ -140,15 +142,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         setupCrossButton()
         
-             
+        
         self.view.addSubview(backgroundView ?? UIImageView())
         self.view.addSubview(avatarImageView ?? UIView())
         avatarImageView?.addSubview(crossButton ?? UIButton())
         
         
         self.tabBarController?.tabBar.isHidden = true
-    
-    
+        
+        
+        
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1){
                 self.avatarImageView?.bounds.size.width = UIScreen.main.bounds.width
@@ -181,11 +184,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             })
         })
-
-        
+        //
+        //
         avatarImageView?.isUserInteractionEnabled = true
         crossButton?.isUserInteractionEnabled = true
-        
+        //
         crossButton?.addTarget(self, action: #selector(self.reversViewAnimate), for: .touchUpInside)
         self.view.layoutIfNeeded()
     }
@@ -197,7 +200,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 self.crossButton?.alpha = 0
                 self.crossButton = nil
             }
-
+            
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1){
                 self.backgroundView?.alpha = 0
                 self.backgroundView = nil
@@ -216,15 +219,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         })
         self.view.layoutIfNeeded()
     }
-           
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-        return 220
+            return 220
         } else {
             return 0
         }
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -232,15 +235,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photosVC = PhotosViewController(photos: photos)
         if indexPath.section == 0 {
-        navigationController?.pushViewController(photosVC, animated: true)
+            navigationController?.pushViewController(photosVC, animated: true)
+        }
     }
-}
-   
-}
     
+}
+
 extension ColorFilter {
     static func randomFilter() -> ColorFilter {
-        let randomInt = Int.random(in: 0...ColorFilter.allCases.count)
+        let randomInt = Int.random(in: 0...7)
         return self.allCases[randomInt]
     }
 }

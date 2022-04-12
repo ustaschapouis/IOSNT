@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController, UICollectionViewDelegate {
+class PhotosViewController: UIViewController, UICollectionViewDelegate, ImageLibrarySubscriber {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -19,7 +20,10 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         return collectionView
     }()
     
-    let photos: Photos
+    var receivedImages = [UIImage]()
+    var imagePublisherFacade = ImagePublisherFacade()
+    
+    var photos: Photos
     
     init(photos: Photos) {
         self.photos = photos
@@ -33,14 +37,20 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        for i in Images.allCases {
+            print(i)
+            receivedImages.append(i.image(name: i))
+        }
+        
+        
+        //        let x = Images.checkmark
+        //        receivedImages.append(x.image(name: .checkmark))
         view.addSubview(collectionView)
-        collectionView.reloadData()
         navigationController?.setNavigationBarHidden(false, animated: true)
-//        navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Photo Gallery"
         navigationController?.navigationBar.backgroundColor = .white
-
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 10, userImages: receivedImages)
     }
     
     override func viewWillLayoutSubviews() {
@@ -49,23 +59,43 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         collectionView.frame = CGRect(x: view.safeAreaInsets.left, y: view.safeAreaInsets.top, width: view.frame.width, height: view.frame.height - view.safeAreaInsets.top)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        imagePublisherFacade.subscribe(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+        imagePublisherFacade.removeSubscription(for: self)
+    }
+    
+    func receive(images: [UIImage]) {
+        receivedImages = images
+        collectionView.reloadData()
+    }
 }
+
 
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.images.count
+        return receivedImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        cell.feedPhoto.image = photos.images[indexPath.row]
-       
+        
+        guard receivedImages.isEmpty == false else {
+            return cell
+        }
+        
+        cell.feedPhoto.image = receivedImages[indexPath.item]
         
         return cell
     }
-    
 }
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
@@ -85,5 +115,4 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
-    
 }

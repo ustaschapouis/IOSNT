@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/macbook/Desktop/IOS programming/IOSNT/Checker.swift">
-   </FileRef>
-   <FileRef
       location = "group:Navigation.xcodeproj">
    </FileRef>
 </Workspace>
