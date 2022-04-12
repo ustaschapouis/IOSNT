@@ -18,7 +18,7 @@ class TextChecker {
         } else {
             return false
         }
-}
+    }
 }
 
 

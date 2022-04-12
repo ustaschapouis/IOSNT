@@ -27,4 +27,4 @@ class MyCustomButton: UIButton {
     @objc private func buttonIsTapped() {
         newTarget()
     }
-    }
+}

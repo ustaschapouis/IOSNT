@@ -8,20 +8,19 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .orange
         
         let alertButton: MyCustomButton = {
-        let button = MyCustomButton(title: "Alert", color: .systemGray, target: tap)
-        button.frame =  CGRect(x: 100, y: 300, width: 200, height: 50)
-        button.center = self.view.center
-        button.backgroundColor = .darkGray
-        button.setTitleColor(.black, for: .normal)
-        return button
+            let button = MyCustomButton(title: "Alert", color: .systemGray, target: tap)
+            button.frame =  CGRect(x: 100, y: 300, width: 200, height: 50)
+            button.center = self.view.center
+            button.backgroundColor = UIColor.darkGray
+            button.setTitleColor(UIColor.black, for: .normal)
+            return button
         }()
-            
         view.addSubview(alertButton)
     }
     
@@ -41,9 +40,9 @@ class InfoViewController: UIViewController {
     }
     
     
-       
-        
-      
-    }
+    
+    
+    
+}
 
 
