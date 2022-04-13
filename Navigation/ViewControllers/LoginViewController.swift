@@ -10,21 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    private let currentUser = CurrentUserService()
-    private let testUser = TestUserService()
-    
-    var delegate: LoginViewControllerDelegate?
-    
-    var coordinator: Coordinator?
-    
-    let logoImage: UIImageView = {
-        let logo = UIImageView()
-        logo.translatesAutoresizingMaskIntoConstraints = false
-        logo.image = UIImage(named: "logo")
-        return logo
-    }()
-    
-    /// Custom Button
     private let color = UIColor(patternImage: UIImage(named: "blue_pixel")!)
     private lazy var loginButton: MyCustomButton = {
         let button = MyCustomButton(title: "Login", color: color, target: tap)
@@ -36,10 +21,28 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-//    private lazy var generatePassButton: MyCustomButton = {
-//        let button = MyCustomButton(title: "Generate password", color: .white, target: <#T##() -> Void#>)
-//        return button
-//    }()
+    private lazy var generatePassButton: MyCustomButton = {
+        let button = MyCustomButton(title: "Generate password", color: .black) {
+            self.toGenerate()
+        }
+        button.backgroundColor = .green
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let currentUser = CurrentUserService()
+    private let testUser = TestUserService()
+    
+    var delegate: LoginViewControllerDelegate?
+    var coordinator: Coordinator?
+    let logoImage: UIImageView = {
+        let logo = UIImageView()
+        logo.translatesAutoresizingMaskIntoConstraints = false
+        logo.image = UIImage(named: "logo")
+        return logo
+    }()
     
     let userTextField: UITextField = {
         let userField = UITextField()
@@ -76,7 +79,6 @@ class LoginViewController: UIViewController {
     
     let scrollView = UIScrollView()
     let userPasswordView = UIView()
-    
     let contentView = UIView()
     
     override func viewDidLoad() {
@@ -90,77 +92,21 @@ class LoginViewController: UIViewController {
         userPasswordView.layer.borderWidth = 0.5
         userPasswordView.layer.cornerRadius = 10
         userPasswordView.clipsToBounds = true
-        
         setUpView()
         setUpConstraints()
-        
     }
     
     func setUpView() {
         view.addSubview(scrollView)
-        userPasswordView.addSubview(userTextField)
-        userPasswordView.addSubview(passwordTextField)
+        scrollView.addSubview(contentView)
+        scrollView.keyboardDismissMode = .onDrag
         contentView.addSubview(userPasswordView)
         contentView.addSubview(loginButton)
         contentView.addSubview(logoImage)
-        scrollView.addSubview(contentView)
-        scrollView.keyboardDismissMode = .onDrag
-        
+        contentView.addSubview(generatePassButton)
+        userPasswordView.addSubview(userTextField)
+        userPasswordView.addSubview(passwordTextField)
     }
-    
-    override func viewDidLayoutSubviews() {
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = keyboardSize.height
-            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-            
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset.bottom = .zero
-        scrollView.verticalScrollIndicatorInsets = .zero
-    }
-    
-    @objc func tap() {
-#if DEBUG
-        
-        if let enteredName = userTextField.text, (testUser.returnUser(userName: enteredName) != nil) {
-            let profileVC = ProfileViewController(userService: testUser, enteredUserName: enteredName)
-            navigationController?.pushViewController(profileVC, animated: true)
-            print("Correct Login")
-        } else {
-            print("WRONG LOGIN!!!")
-        }
-        
-#else
-        if let enterdName = userTextField.text, (currentUser.returnUser(userName: enterdName) != nil) {
-            let profileVC = ProfileViewController(userService: currentUser, enteredUserName: enterdName)
-            navigationController?.pushViewController(profileVC, animated: true)
-            print("Correct login")
-        } else {
-            print("WRONG LOGIN!!!")
-        }
-        
-#endif
-    }
-    
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([
@@ -200,12 +146,88 @@ class LoginViewController: UIViewController {
             loginButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             loginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
+            
+            generatePassButton.centerXAnchor.constraint(equalTo: logoImage.centerXAnchor),
+            generatePassButton.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 50)
         ])
-        
-        
-        
+    }
+    private func passwordGeneration() -> String {
+        let smth = 6
+        let passwordChars = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+        let randomPassword = String((0..<smth).map{ _ in passwordChars[Int(arc4random_uniform(UInt32(passwordChars.count)))]})
+        print(randomPassword)
+        return randomPassword
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
+    }
+    
+    @objc func tap() {
+#if DEBUG
+        
+        if let enteredName = userTextField.text, (testUser.returnUser(userName: enteredName) != nil) {
+            let profileVC = ProfileViewController(userService: testUser, enteredUserName: enteredName)
+            navigationController?.pushViewController(profileVC, animated: true)
+            print("Correct Login")
+        } else {
+            print("WRONG LOGIN!!!")
+        }
+        
+#else
+        if let enterdName = userTextField.text, (currentUser.returnUser(userName: enterdName) != nil) {
+            let profileVC = ProfileViewController(userService: currentUser, enteredUserName: enterdName)
+            navigationController?.pushViewController(profileVC, animated: true)
+            print("Correct login")
+        } else {
+            print("WRONG LOGIN!!!")
+        }
+        
+#endif
+    }
+    
+    @objc func toGenerate() {
+        let activity = UIActivityIndicatorView(style: .medium)
+        contentView.addSubview(activity)
+        activity.center = contentView.center
+        activity.startAnimating()
+        let bruteForce = BruteForce()
+        let passUnlock = self.passwordGeneration()
+        let queue = OperationQueue()
+        queue.addOperation {
+            let password = bruteForce.bruteForce(passwordToUnlock: passUnlock)
+            OperationQueue.main.addOperation {
+                self.passwordTextField.isSecureTextEntry = false
+                self.passwordTextField.text = password
+                activity.stopAnimating()
+                activity.hidesWhenStopped = true
+            }
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 }
 
 
