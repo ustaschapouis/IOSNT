@@ -152,9 +152,9 @@ class LoginViewController: UIViewController {
         ])
     }
     private func passwordGeneration() -> String {
-        let smth = 6
+        let lenght = 3
         let passwordChars = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
-        let randomPassword = String((0..<smth).map{ _ in passwordChars[Int(arc4random_uniform(UInt32(passwordChars.count)))]})
+        let randomPassword = String((0..<lenght).map{ _ in passwordChars[Int(arc4random_uniform(UInt32(passwordChars.count)))]})
         print(randomPassword)
         return randomPassword
     }
