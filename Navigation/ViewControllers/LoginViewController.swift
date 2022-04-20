@@ -94,6 +94,18 @@ class LoginViewController: UIViewController {
         userPasswordView.clipsToBounds = true
         setUpView()
         setUpConstraints()
+        
+        var time = 0
+        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            time += 1
+            if time == 10 {
+                let alertWindow = UIAlertController(title: "WARNING", message: "Please, LogIn or close the application", preferredStyle: .alert)
+                alertWindow.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alertWindow, animated: true)
+            }
+        }
+        RunLoop.current.add(timer, forMode: .common)
+        timer.fire()
     }
     
     func setUpView() {
@@ -229,6 +241,9 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
+
+
+        
 
 
 

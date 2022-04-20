@@ -76,7 +76,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, ImageLib
                 }
             }
             DispatchQueue.main.async {
-                imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: processedImages)
+                self.imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: processedImages)
                 print("Succeed")
             }
         }
