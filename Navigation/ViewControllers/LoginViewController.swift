@@ -81,6 +81,8 @@ class LoginViewController: UIViewController {
     let userPasswordView = UIView()
     let contentView = UIView()
     
+    private var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -95,17 +97,22 @@ class LoginViewController: UIViewController {
         setUpView()
         setUpConstraints()
         
-        var time = 0
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            time += 1
-            if time == 10 {
+        if self.timer == nil {
+            let timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { timer in
                 let alertWindow = UIAlertController(title: "WARNING", message: "Please, LogIn or close the application", preferredStyle: .alert)
                 alertWindow.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alertWindow, animated: true)
             }
+            RunLoop.current.add(timer, forMode: .common)
+            timer.fire()
+            self.timer = timer
         }
-        RunLoop.current.add(timer, forMode: .common)
-        timer.fire()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer?.invalidate()
+        self.timer = nil
     }
     
     func setUpView() {
