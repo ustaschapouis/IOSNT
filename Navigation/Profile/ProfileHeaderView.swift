@@ -79,7 +79,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         status.placeholder = "Write your status"
         status.textColor = .black
         status.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        status.addTarget(self, action: #selector(statusTextChanged(_: )), for: .editingChanged)
+        status.addTarget(ProfileTableHeaderView.self, action: #selector(statusTextChanged(_: )), for: .editingChanged)
         status.translatesAutoresizingMaskIntoConstraints = false
         status.layer.cornerRadius = 6
         return status

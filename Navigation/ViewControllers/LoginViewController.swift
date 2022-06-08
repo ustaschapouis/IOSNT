@@ -81,6 +81,8 @@ class LoginViewController: UIViewController {
     let userPasswordView = UIView()
     let contentView = UIView()
     
+    private var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -94,6 +96,23 @@ class LoginViewController: UIViewController {
         userPasswordView.clipsToBounds = true
         setUpView()
         setUpConstraints()
+        
+        if self.timer == nil {
+            let timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { timer in
+                let alertWindow = UIAlertController(title: "WARNING", message: "Please, LogIn or close the application", preferredStyle: .alert)
+                alertWindow.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alertWindow, animated: true)
+            }
+            RunLoop.current.add(timer, forMode: .common)
+            timer.fire()
+            self.timer = timer
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer?.invalidate()
+        self.timer = nil
     }
     
     func setUpView() {
@@ -229,6 +248,9 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
+
+
+        
 
 
 
