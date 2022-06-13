@@ -220,6 +220,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func tap() throws {
+
 #if DEBUG
         let userService = TestUserService()
         //        if let enteredName = userTextField.text, (testUser.returnUser(userName: enteredName) != nil) {
@@ -241,6 +242,7 @@ class LoginViewController: UIViewController {
         //        }
         
 #endif
+     
         guard userTextField.text != "" || passwordTextField.text != "" else {
             throw AuthError.empty
         }
