@@ -8,15 +8,22 @@
 import Foundation
 import UIKit
 
+enum CheckerErrors: Error {
+    case incorrect
+    case empty
+}
+
 class TextChecker {
     
-    private let correctText = "Password"
+    private let correctWord = "Password"
     
-    func check(word: String) -> Bool {
-        if word == correctText {
-            return true
+    func check(word: String, completion:  @escaping (Result<String, CheckerErrors>) -> Void  ) {
+        if word == correctWord {
+            completion(.success("Correct!"))
+        } else if word == "" {
+            completion(.failure(.empty))
         } else {
-            return false
+            completion(.failure(.incorrect))
         }
     }
 }

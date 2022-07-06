@@ -12,11 +12,10 @@ class TestUserService: UserService {
     
     let user = User(userName: "User")
     
-    func returnUser(userName: String) -> User? {
+    func returnUser(userName: String) throws -> User {
         if userName == user.userName {
             return user
-        } else {
-            return nil
+        }
+        throw AuthError.incorrect
     }
     }
-}

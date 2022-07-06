@@ -27,7 +27,7 @@ class FeedViewController: UIViewController {
     var checker = TextChecker()
     var coordinator: Coordinator?
     let feedView = UIView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
@@ -104,14 +104,44 @@ class FeedViewController: UIViewController {
     }
     
     private func enteredWordCheck() {
-        let checkingWord = checker.check(word: customTextFIeld.text!)
-        if checkingWord == true {
-            customTextFIeld.textColor = .green
-        } else {
-            customTextFIeld.textColor = .red
+        
+        let enteredWord = customTextFIeld.text
+        checker.check(word: enteredWord ?? "") { [weak self] result in
+            switch  result {
+            case .success(let success):
+                self?.customTextFIeld.backgroundColor = .green
+                self?.customTextFIeld.text = "\(success)"
+                self?.customTextFIeld.textAlignment = .center
+                self?.customTextFIeld.textColor = .white
+                self?.customTextFIeld.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+                self?.customTextFIeld.alpha = 1
+            case .failure(.incorrect):
+                self?.customTextFIeld.backgroundColor = .red
+                self?.customTextFIeld.text = "Incorrect!"
+                self?.customTextFIeld.textAlignment = .center
+                self?.customTextFIeld.textColor = .white
+                self?.customTextFIeld.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+                self?.customTextFIeld.alpha = 1
+            case .failure(.empty):
+                self?.customTextFIeld.backgroundColor = .yellow
+                self?.customTextFIeld.text = "Please, enter the word for check!"
+                self?.customTextFIeld.textAlignment = .center
+                self?.customTextFIeld.textColor = .black
+                self?.customTextFIeld.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+                self?.customTextFIeld.alpha = 1
+            }
         }
     }
 }
+
+//    private func enteredWordCheck() {
+//        let checkingWord = checker.check(word: customTextFIeld.text!)
+//        if checkingWord == true {
+//            customTextFIeld.textColor = .green
+//        } else {
+//            customTextFIeld.textColor = .red
+//        }
+//    }
 
 
 

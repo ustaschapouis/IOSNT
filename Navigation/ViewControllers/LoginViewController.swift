@@ -7,12 +7,28 @@
 
 import UIKit
 
+enum AuthError: Error {
+    case empty
+    case incorrect
+}
 
 class LoginViewController: UIViewController {
     
     private let color = UIColor(patternImage: UIImage(named: "blue_pixel")!)
+    
     private lazy var loginButton: MyCustomButton = {
-        let button = MyCustomButton(title: "Login", color: color, target: tap)
+        let button = MyCustomButton(title: "Login", color: color) { [weak self] in
+            do {
+                try self?.tap()
+            } catch AuthError.empty {
+                self?.showAlert(message: "Fill the blank fields!")
+            } catch AuthError.incorrect {
+                self?.showAlert(message: "Unvalid username of password!")
+            } catch {
+                self?.showAlert(message: "Unexpected error")
+            }
+        }
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
         button.layer.borderColor = UIColor.lightGray.cgColor
@@ -37,6 +53,10 @@ class LoginViewController: UIViewController {
     
     var delegate: LoginViewControllerDelegate?
     var coordinator: Coordinator?
+    
+    var loginFactory: MyLoginFactory?
+    var pushProfile: ((_ userService: UserService, _ username: String) -> Void)?
+    
     let logoImage: UIImageView = {
         let logo = UIImageView()
         logo.translatesAutoresizingMaskIntoConstraints = false
@@ -170,6 +190,14 @@ class LoginViewController: UIViewController {
             generatePassButton.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 50)
         ])
     }
+    
+    private func showAlert(message: String) {
+        let alertController = UIAlertController(title: "ERROR", message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     private func passwordGeneration() -> String {
         let lenght = 3
         let passwordChars = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
@@ -177,6 +205,7 @@ class LoginViewController: UIViewController {
         print(randomPassword)
         return randomPassword
     }
+    
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -190,27 +219,40 @@ class LoginViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
     
-    @objc func tap() {
+    @objc func tap() throws {
+
 #if DEBUG
-        
-        if let enteredName = userTextField.text, (testUser.returnUser(userName: enteredName) != nil) {
-            let profileVC = ProfileViewController(userService: testUser, enteredUserName: enteredName)
-            navigationController?.pushViewController(profileVC, animated: true)
-            print("Correct Login")
-        } else {
-            print("WRONG LOGIN!!!")
-        }
+        let userService = TestUserService()
+        //        if let enteredName = userTextField.text, (testUser.returnUser(userName: enteredName) != nil) {
+        //            let profileVC = ProfileViewController(userService: testUser, enteredUserName: enteredName)
+        //            navigationController?.pushViewController(profileVC, animated: true)
+        //            print("Correct Login")
+        //        } else {
+        //            print("WRONG LOGIN!!!")
+        //        }
         
 #else
-        if let enterdName = userTextField.text, (currentUser.returnUser(userName: enterdName) != nil) {
-            let profileVC = ProfileViewController(userService: currentUser, enteredUserName: enterdName)
-            navigationController?.pushViewController(profileVC, animated: true)
-            print("Correct login")
-        } else {
-            print("WRONG LOGIN!!!")
-        }
+        let userService = CurrentUserService()
+        //        if let enterdName = userTextField.text, (currentUser.returnUser(userName: enterdName) != nil) {
+        //            let profileVC = ProfileViewController(userService: currentUser, enteredUserName: enterdName)
+        //            navigationController?.pushViewController(profileVC, animated: true)
+        //            print("Correct login")
+        //        } else {
+        //            print("WRONG LOGIN!!!")
+        //        }
         
 #endif
+     
+        guard userTextField.text != "" || passwordTextField.text != "" else {
+            throw AuthError.empty
+        }
+        guard let username = userTextField.text,
+              let pswd = passwordTextField.text,
+              let inspector = loginFactory?.loginFactoryInspector(),
+              inspector.checkLoginPassword(login: username, password: pswd) == true else {
+            throw AuthError.incorrect
+        }
+        pushProfile?(userService, username)
     }
     
     @objc func toGenerate() {
@@ -250,7 +292,7 @@ class LoginViewController: UIViewController {
 }
 
 
-        
+
 
 
 
