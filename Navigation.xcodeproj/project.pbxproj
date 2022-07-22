@@ -37,6 +37,9 @@
 		FA98A3C127E0980C004E51C3 /* MyCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A3C027E0980C004E51C3 /* MyCustomTextField.swift */; };
 		FA98A3C327E09942004E51C3 /* TextFieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A3C227E09942004E51C3 /* TextFieldChecker.swift */; };
 		FA9B540C27D13D4100721E17 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B540B27D13D4100721E17 /* LoginViewControllerDelegate.swift */; };
+
+		FA9B6530288A86DB00709EAD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B652F288A86DB00709EAD /* NetworkService.swift */; };
+
 		FAA0124D27D4E7F000D56B0A /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0124C27D4E7F000D56B0A /* LoginInspector.swift */; };
 		FAA0244127DF7A1200229AC2 /* MyCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */; };
 		FAA03E132805AC9B005245D9 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA03E122805AC9B005245D9 /* BruteForce.swift */; };
@@ -82,6 +85,7 @@
 		FA98A3C027E0980C004E51C3 /* MyCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomTextField.swift; sourceTree = "<group>"; };
 		FA98A3C227E09942004E51C3 /* TextFieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChecker.swift; sourceTree = "<group>"; };
 		FA9B540B27D13D4100721E17 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
+		FA9B652F288A86DB00709EAD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FAA0124C27D4E7F000D56B0A /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomButton.swift; sourceTree = "<group>"; };
 		FAA03E122805AC9B005245D9 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 		3C2FDE5326D8BEA0005D55A0 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				FA9B652E288A86BB00709EAD /* NetworkService */,
 				FAA2169727E9F7E0009FAD6C /* Coordinators */,
 				FA13A49A27D0F2010029D44F /* User */,
 				FA937F0C27E115F000CE3232 /* Login */,
@@ -225,6 +230,14 @@
 				3C5A9F7B26E91CF70056973A /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FA9B652E288A86BB00709EAD /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				FA9B652F288A86DB00709EAD /* NetworkService.swift */,
+			);
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
 		FAA2169727E9F7E0009FAD6C /* Coordinators */ = {
@@ -384,6 +397,7 @@
 				FA937F1127E116FF00CE3232 /* Post.swift in Sources */,
 				FA57784E28566062001D4740 /* ProfileModuleFactory.swift in Sources */,
 				FA13A4A227D0F7AC0029D44F /* TestUserService.swift in Sources */,
+				FA9B6530288A86DB00709EAD /* NetworkService.swift in Sources */,
 				3CC0ED2F26FDD94800ADB19C /* PhotosViewController.swift in Sources */,
 				FAA1908427E77E84009D2619 /* CurrentUserService.swift in Sources */,
 				FAA0244127DF7A1200229AC2 /* MyCustomButton.swift in Sources */,
