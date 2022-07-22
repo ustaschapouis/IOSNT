@@ -37,7 +37,9 @@
 		FA98A3C127E0980C004E51C3 /* MyCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A3C027E0980C004E51C3 /* MyCustomTextField.swift */; };
 		FA98A3C327E09942004E51C3 /* TextFieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A3C227E09942004E51C3 /* TextFieldChecker.swift */; };
 		FA9B540C27D13D4100721E17 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B540B27D13D4100721E17 /* LoginViewControllerDelegate.swift */; };
+
 		FA9B6530288A86DB00709EAD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B652F288A86DB00709EAD /* NetworkService.swift */; };
+
 		FAA0124D27D4E7F000D56B0A /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0124C27D4E7F000D56B0A /* LoginInspector.swift */; };
 		FAA0244127DF7A1200229AC2 /* MyCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */; };
 		FAA03E132805AC9B005245D9 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA03E122805AC9B005245D9 /* BruteForce.swift */; };
