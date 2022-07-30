@@ -28,6 +28,7 @@
 		FA09E00427F30277002610B4 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA09E00327F30277002610B4 /* PostViewModel.swift */; };
 		FA13A4A227D0F7AC0029D44F /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A4A127D0F7AC0029D44F /* TestUserService.swift */; };
 		FA57784E28566062001D4740 /* ProfileModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57784D28566062001D4740 /* ProfileModuleFactory.swift */; };
+		FA6ED33C288D949D00090B69 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ED33B288D949D00090B69 /* AppConfiguration.swift */; };
 		FA930B3E276CD32500D0C405 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = FA930B3D276CD32500D0C405 /* iOSIntPackage */; };
 		FA937F1127E116FF00CE3232 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA937F1027E116FF00CE3232 /* Post.swift */; };
 		FA937F1727E117E600CE3232 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA937F1627E117E600CE3232 /* Checker.swift */; };
@@ -37,9 +38,7 @@
 		FA98A3C127E0980C004E51C3 /* MyCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A3C027E0980C004E51C3 /* MyCustomTextField.swift */; };
 		FA98A3C327E09942004E51C3 /* TextFieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A3C227E09942004E51C3 /* TextFieldChecker.swift */; };
 		FA9B540C27D13D4100721E17 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B540B27D13D4100721E17 /* LoginViewControllerDelegate.swift */; };
-
 		FA9B6530288A86DB00709EAD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B652F288A86DB00709EAD /* NetworkService.swift */; };
-
 		FAA0124D27D4E7F000D56B0A /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0124C27D4E7F000D56B0A /* LoginInspector.swift */; };
 		FAA0244127DF7A1200229AC2 /* MyCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0244027DF7A1200229AC2 /* MyCustomButton.swift */; };
 		FAA03E132805AC9B005245D9 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA03E122805AC9B005245D9 /* BruteForce.swift */; };
@@ -77,6 +76,7 @@
 		FA09E00327F30277002610B4 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		FA13A4A127D0F7AC0029D44F /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		FA57784D28566062001D4740 /* ProfileModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModuleFactory.swift; sourceTree = "<group>"; };
+		FA6ED33B288D949D00090B69 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		FA937F1027E116FF00CE3232 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FA937F1627E117E600CE3232 /* Checker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		FA96F1A227D5483D00FC3672 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
@@ -236,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				FA9B652F288A86DB00709EAD /* NetworkService.swift */,
+				FA6ED33B288D949D00090B69 /* AppConfiguration.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -390,6 +391,7 @@
 				3C2FDE6926D8CA72005D55A0 /* FeedViewController.swift in Sources */,
 				3C5A9F7C26E91CF70056973A /* LoginViewController.swift in Sources */,
 				FA98A3C327E09942004E51C3 /* TextFieldChecker.swift in Sources */,
+				FA6ED33C288D949D00090B69 /* AppConfiguration.swift in Sources */,
 				3C40D3DC26DE720F00005423 /* ProfileViewController.swift in Sources */,
 				FA937F1727E117E600CE3232 /* Checker.swift in Sources */,
 				3C2FDE6F26DA4E04005D55A0 /* InfoViewController.swift in Sources */,
